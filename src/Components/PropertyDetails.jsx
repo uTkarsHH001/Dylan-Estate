@@ -19,7 +19,6 @@ export default function PropertyDetails(){
         availability: '',
         description: ''
     });
-    console.log(formData)
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -36,7 +35,8 @@ export default function PropertyDetails(){
 
     return (
         <form className='w-full h-full' onSubmit={handleSubmit}>
-            <div className='h-5/6 overflow-scroll overflow-x-hidden px-16'>
+            <div className='h-5/6 overflow-scroll overflow-x-hidden px-5 md:px-16'>
+                {/* Property For */}
                 <div className='my-6'>
                     <label>
                             Property For : <span className='text-red-600'>*</span> <br />
@@ -64,10 +64,11 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
+                {/* Property Type */}
                 <div className='my-6'>
                     <label>
                             Property Type : <span className='text-red-600'>*</span> <br />
-                            <div className='flex justify-between p-2'>
+                            <div className='flex justify-between flex-wrap p-2'>
                                 <label>
                                     <input
                                         type="radio"
@@ -122,7 +123,7 @@ export default function PropertyDetails(){
                                     </div>
                                 )}
                                 {formData.propertyType === 'commercial' && (
-                                    <div className='w-2/4 flex flex-wrap gap-3'>
+                                    <div className='grid grid-cols-3 gap-3'>
                                         <RadioBadge 
                                             type="radio"
                                             name="subPropertyType"
@@ -184,8 +185,9 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
-                <div className='my-6 flex justify-between'>
-                    <label className='flex-1 px-2'>
+                {/* Built Up Area & Carpet Area */}
+                <div className='my-6 flex justify-between flex-wrap'>
+                    <label className='flex-1 px-2 min-w-24'>
                         Built up Area <span className='text-red-600'>*</span><br />
                         <input
                             type="text"
@@ -196,7 +198,7 @@ export default function PropertyDetails(){
                             className='border w-full my-2 p-2 rounded-lg'
                         />
                     </label>
-                    <label className='flex-1 px-2'>
+                    <label className='flex-1 px-2 min-w-24'>
                         Carpet Area <span className='text-red-600'>*</span><br />
                         <input
                             type="text"
@@ -208,8 +210,9 @@ export default function PropertyDetails(){
                         />
                     </label>
                 </div>
-                <div className='my-6 flex'>
-                    <label className='flex-2 px-1'>
+                {/* Poperty On Floor & Total Floor & Property Facing */}
+                <div className='my-6 flex flex-wrap'>
+                    <label className='flex-2 px-1 min-w-24'>
                         Property on Floor <span className='text-red-600'>*</span><br />
                         <input
                             type="text"
@@ -220,7 +223,7 @@ export default function PropertyDetails(){
                             className='border w-full my-2 p-2 rounded-lg'
                         />
                     </label>
-                    <label className='flex-2 px-1'>
+                    <label className='flex-2 px-1 min-w-24'>
                         Total Floors <span className='text-red-600'>*</span><br />
                         <input
                             type="text"
@@ -231,7 +234,7 @@ export default function PropertyDetails(){
                             className='border w-full my-2 p-2 rounded-lg'
                         />
                     </label>
-                    <label className='flex-1 px-1'>
+                    <label className='flex-1 px-1 min-w-24'>
                         Property Facing <span className='text-red-600'>*</span>
                         <select
                             name="propertyFacing"
@@ -240,21 +243,22 @@ export default function PropertyDetails(){
                             className='w-full my-2 p-2 rounded-lg'
                         >
                             <option value="">Select</option>
-                            <option value="India">North</option>
-                            <option value="India">South</option>
-                            <option value="India">East</option>
-                            <option value="India">West</option>
-                            <option value="India">North-East</option>
-                            <option value="India">North-West</option>
-                            <option value="India">South-East</option>
-                            <option value="India">South-West</option>
+                            <option value="north">North</option>
+                            <option value="south">South</option>
+                            <option value="east">East</option>
+                            <option value="west">West</option>
+                            <option value="northEast">North-East</option>
+                            <option value="northWest">North-West</option>
+                            <option value="southEast">South-East</option>
+                            <option value="southWest">South-West</option>
                         </select>
                     </label>
                 </div>
+                {/* Property Age */}
                 <div className='my-6'>
                     <label>
                             Property Age : <span className='text-red-600'>*</span> <br />
-                            <div className='flex gap-6 p-2'>
+                            <div className='flex gap-6 p-2 flex-wrap'>
                                 <RadioBadge 
                                     name="propertyAge"
                                     value="lessThan1Year"
@@ -293,10 +297,11 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
+                {/* BHK Type */}
                 <div className='my-6'>
                     <label>
                             BHK Type : <span className='text-red-600'>*</span> <br />
-                            <div className='flex gap-6 p-2'>
+                            <div className='flex gap-6 p-2 flex-wrap'>
                                 <RadioBadge 
                                     name="bhkType"
                                     value="1RK"
@@ -342,6 +347,7 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
+                {/* Bathroom/Toilet */}
                 <div className='my-6'>
                     <label>
                             Bathrooms/Toilets : <span className='text-red-600'>*</span> <br />
@@ -391,10 +397,11 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
+                {/* Balcony */}
                 <div className='my-6'>
                     <label>
                             Balcony <span className='text-red-600'>*</span> <br />
-                            <div className='flex gap-6 p-2'>
+                            <div className='flex flex-wrap gap-6 p-2'>
                                 <RadioBadge 
                                     name="balcony"
                                     value="1"
@@ -426,10 +433,11 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
+                {/* Tenant Preferences */}
                 <div className='my-6'>
                     <label>
                         Tenant Preference <span className='text-red-600'>*</span> <br />
-                        <div className='flex gap-12'>
+                        <div className='flex flex-wrap gap-12'>
                             <RadioBadge 
                                 type="radio"
                                 name="preference"
@@ -465,10 +473,11 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
+                {/* Availability */}
                 <div className='my-6'>
                     <label>
                             Availability <span className='text-red-600'>*</span> <br />
-                            <div className='flex gap-5 p-2'>
+                            <div className='flex flex-wrap gap-5 p-2'>
                                 <RadioBadge 
                                     name="availability"
                                     value="immediate"
@@ -500,6 +509,7 @@ export default function PropertyDetails(){
                             </div>
                     </label>
                 </div>
+                {/* Property Description */}
                 <div className="my-6">
                     <label>
                         Property Description <span className='text-red-600'>*</span> <br />
@@ -515,6 +525,7 @@ export default function PropertyDetails(){
                     </label>
                 </div>
             </div>
+            {/* Submit Button */}
             <div className='h-1/6 bg-[#122B49] p-4 flex justify-between items-baseline text-white rounded-b-2xl'>
                 <div className='flex items-baseline'>
                     <p className='text-sm'>Need Help?&nbsp;</p>

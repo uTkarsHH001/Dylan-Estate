@@ -53,94 +53,94 @@ export default function FeaturenAmenties(){
     return(
 
         <>
-            <form action="" className="w-full h-full px-16">
-                <div className="h-5/6 overflow-scroll overflow-x-hidden px-16">
+            <form action="" className="w-full h-full">
+                <div className="w-full h-5/6 overflow-scroll overflow-x-hidden px-5 md:px-16">
                     {/* General Features                    */}
-                    <div className="py-4 flex flex-col gap-8">
+                    <div className="py-5 flex flex-wrap flex-col gap-y-8">
                         <p className="font-semibold">General Features</p>
                         {/* Non-Veg */}
                         <div>
-                                <b>Non-Veg</b> <span className='text-red-600'>*</span> <br />
-                                <div className='flex justify-start p-2'>
-                                    <label className='flex-1'>
-                                        <input
-                                            type="radio"
-                                            name="nonVegAllowed"
-                                            value="allowed"
-                                            checked={formData.nonVegAllowed === 'allowed'}
-                                            onChange={handleChange}
-                                        />
-                                        &nbsp;&nbsp;Allowed
-                                    </label>
-                                    <label className='flex-1'>
-                                        <input
-                                            type="radio"
-                                            name="nonVegAllowed"
-                                            value="notAllowed"
-                                            checked={formData.nonVegAllowed === 'notAllowed'}
-                                            onChange={handleChange}
-                                        />
-                                        &nbsp;&nbsp;Not Allowed
-                                    </label>
-                                </div>
+                            <b>Non-Veg</b> <span className='text-red-600'>*</span> <br />
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="nonVegAllowed"
+                                        value="allowed"
+                                        checked={formData.nonVegAllowed === 'allowed'}
+                                        onChange={handleChange}
+                                    />
+                                    &nbsp;&nbsp;Allowed
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="nonVegAllowed"
+                                        value="notAllowed"
+                                        checked={formData.nonVegAllowed === 'notAllowed'}
+                                        onChange={handleChange}
+                                    />
+                                    &nbsp;&nbsp;Not Allowed
+                                </label>
+                            </div>
                         </div>
                         {/* Pets Allowed */}
                         <div>
-                                <b>Pets Allowed</b> <span className='text-red-600'>*</span> <br />
-                                <div className='flex justify-start p-2'>
-                                    <label className='flex-1'>
-                                        <input
-                                            type="radio"
-                                            name="petsAllowed"
-                                            value="yes"
-                                            checked={formData.petsAllowed === 'yes'}
-                                            onChange={handleChange}
-                                        />
-                                        &nbsp;&nbsp;Yes
-                                    </label>
-                                    <label className='flex-1'>
-                                        <input
-                                            type="radio"
-                                            name="petsAllowed"
-                                            value="no"
-                                            checked={formData.petsAllowed === 'no'}
-                                            onChange={handleChange}
-                                        />
-                                        &nbsp;&nbsp;No
-                                    </label>
-                                </div>
+                            <b>Pets Allowed</b> <span className='text-red-600'>*</span> <br />
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="petsAllowed"
+                                        value="yes"
+                                        checked={formData.petsAllowed === 'yes'}
+                                        onChange={handleChange}
+                                    />
+                                    &nbsp;&nbsp;Yes
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="petsAllowed"
+                                        value="no"
+                                        checked={formData.petsAllowed === 'no'}
+                                        onChange={handleChange}
+                                    />
+                                    &nbsp;&nbsp;No
+                                </label>
+                            </div>
                         </div>
                         {/* Electricity */}
                         <div>
-                                <b>Electricity</b> <span className='text-red-600'>*</span> <br />
-                                <div className='flex justify-start p-2'>
-                                    <label className='flex-1'>
-                                        <input
-                                            type="radio"
-                                            name="electricity"
-                                            value="powercut"
-                                            checked={formData.electricity === 'powercut'}
-                                            onChange={handleChange}
-                                        />
-                                        &nbsp;&nbsp;Rare/No Powercut
-                                    </label>
-                                    <label className='flex-1'>
-                                        <input
-                                            type="radio"
-                                            name="electricity"
-                                            value="frequentPowercut"
-                                            checked={formData.electricity === 'frequentPowercut'}
-                                            onChange={handleChange}
-                                        />
-                                        &nbsp;&nbsp;Frequent Powercut
-                                    </label>
-                                </div>
+                            <b>Electricity</b> <span className='text-red-600'>*</span> <br />
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="electricity"
+                                        value="powercut"
+                                        checked={formData.electricity === 'powercut'}
+                                        onChange={handleChange}
+                                    />
+                                    &nbsp;&nbsp;Rare/No Powercut
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="electricity"
+                                        value="frequentPowercut"
+                                        checked={formData.electricity === 'frequentPowercut'}
+                                        onChange={handleChange}
+                                    />
+                                    &nbsp;&nbsp;Frequent Powercut
+                                </label>
+                            </div>
                         </div>
                         {/* Water Supply */}
                         <div>
                             <b>Water Supply</b> <span className='text-red-600'>*</span> <br />
-                            <div className='flex justify-start p-2'>
-                                <label className='flex-1'>
+                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                                <label>
                                     <input
                                         type="radio"
                                         name="waterSupply"
@@ -151,7 +151,7 @@ export default function FeaturenAmenties(){
                                     &nbsp;&nbsp;Municipal Corporation 
                                     (BMC)
                                 </label>
-                                <label className='flex-1'>
+                                <label>
                                     <input
                                         type="radio"
                                         name="waterSupply"
@@ -161,7 +161,7 @@ export default function FeaturenAmenties(){
                                     />
                                     &nbsp;&nbsp;Borewell
                                 </label>
-                                <label className='flex-1'>
+                                <label>
                                     <input
                                         type="radio"
                                         name="waterSupply"
@@ -175,11 +175,11 @@ export default function FeaturenAmenties(){
                         </div>
                         <hr />
                         {/* Furnishing */}
-                        <div className="py-4 flex flex-col gap-8">
+                        <div className="py-4 flex flex-col">
                             <div>
                                 <b>Furnishing</b> <span className='text-red-600'>*</span> <br />
-                                <div className='flex justify-start p-2'>
-                                    <label className='flex-1'>
+                                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                                    <label className='flex-1 min-w-24'>
                                         <input
                                             type="checkbox"
                                             name="furnishing"
@@ -189,7 +189,7 @@ export default function FeaturenAmenties(){
                                         />
                                         &nbsp;&nbsp;Fully Furnished
                                     </label>
-                                    <label className='flex-1'>
+                                    <label className='flex-1 min-w-24'>
                                         <input
                                             type="checkbox"
                                             name="furnishing"
@@ -199,7 +199,7 @@ export default function FeaturenAmenties(){
                                         />
                                         &nbsp;&nbsp;Semi Furnished
                                     </label>
-                                    <label className='flex-1'>
+                                    <label className='flex-1 min-w-24'>
                                         <input
                                             type="checkbox"
                                             name="furnishing"
@@ -217,11 +217,11 @@ export default function FeaturenAmenties(){
                     <hr />
                     
                     {/* Addtional Features */}
-                    <div className="py-4 flex flex-col gap-6">  
+                    <div className="py-5 flex flex-col gap-y-8">  
                         <div>
                             <b>Additional Features</b>
                         </div>
-                        <div className="flex flex-wrap gap-x-24 gap-y-8">
+                        <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             <label>
                                 <input
                                     type="checkbox"
@@ -295,10 +295,10 @@ export default function FeaturenAmenties(){
                     <hr />
 
                     {/* Tiles */}
-                    <div className="py-4 flex flex-col gap-6">
+                    <div className="py-5 flex flex-col gap-y-8">
                         <div><b>Tiles</b></div>
-                        <div className='flex p-2'>
-                            <label className="flex-1">
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                            <label>
                                 <input
                                     type="checkbox"
                                     name="tiles"
@@ -310,7 +310,7 @@ export default function FeaturenAmenties(){
                                 />
                                 &nbsp;&nbsp;Normal White Tiles
                             </label>
-                            <label className="flex-1">
+                            <label>
                                 <input
                                     type="checkbox"
                                     name="tiles"
@@ -322,7 +322,7 @@ export default function FeaturenAmenties(){
                                 />
                                 &nbsp;&nbsp;Marble
                             </label>
-                            <label className="flex-1">
+                            <label>
                                 <input
                                     type="checkbox"
                                     name="tiles"
@@ -340,10 +340,10 @@ export default function FeaturenAmenties(){
                     <hr />
                     
                     {/* Safety */}
-                    <div className="py-4 flex flex-col gap-6">
+                    <div className="py-5 flex flex-col gap-y-8">
                         <div><b>Safety</b><span className='text-red-600'>*</span></div>
-                        <div className='flex p-2'>
-                            <label className="flex-1">
+                        <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                            <label>
                                 <input
                                     type="checkbox"
                                     name="safety"
@@ -355,7 +355,7 @@ export default function FeaturenAmenties(){
                                 />
                                 &nbsp;&nbsp;24/7 Security personnel (Gated Security)
                             </label>
-                            <label className="flex-1">
+                            <label>
                                 <input
                                     type="checkbox"
                                     name="safety"
@@ -363,7 +363,6 @@ export default function FeaturenAmenties(){
                                     checked={formData['safety'].includes('CCTV')}
                                     className="mr-2"
                                     onChange={handleCheckboxChange}
-                                    
                                 />
                                 &nbsp;&nbsp;Security Systems- CCTV
                             </label>                           
@@ -373,11 +372,11 @@ export default function FeaturenAmenties(){
                     <hr />
 
                     {/* Social Amenities */}
-                    <div className="py-4 flex flex-col gap-6">  
+                    <div className="py-5 flex flex-col gap-y-8">  
                         <div>
                             <b>Social Amenities</b>
                         </div>
-                        <div className="w-full flex flex-wrap gap-x-20 gap-y-8 justify-around items-around">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             <CheckboxIcon 
                                 value={"24/7Security"} 
                                 Icon={MdSecurity} 
@@ -507,6 +506,7 @@ export default function FeaturenAmenties(){
                         </div>
                     </div>
                 </div>
+                {/* Submit Button */}
                 <div className='h-1/6 bg-[#122B49] p-4 flex justify-between items-baseline text-white rounded-b-2xl'>
                     <div className='flex items-baseline'>
                         <p className='text-sm'>Need Help?&nbsp;</p>

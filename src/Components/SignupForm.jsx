@@ -24,10 +24,10 @@ export default function SignupForm(){
 
     return (
         <form className='w-full h-full' onSubmit={handleSubmit}>
-            <div className='h-1/5 bg-[#FCF8F4] p-4 font-semibold'>
+            <div className='h-1/6 bg-[#FCF8F4] p-4 font-semibold'>
                 <p className='pl-8'>LETS GET YOU STARTED !</p>
             </div>
-            <div className='h-3/5 overflow-scroll overflow-x-hidden px-16'>
+            <div className='h-4/6 overflow-scroll overflow-x-hidden px-16'>
                 <div className='my-6'>
                 <label>
                         I am : <span className='text-red-600'>*</span> <br />
@@ -125,12 +125,12 @@ export default function SignupForm(){
                     </label>
                 </div>
             </div>
-            <div className='h-1/5 px-12 py-4 flex justify-between items-baseline'>
-                <div className='flex items-baseline'>
-                    <p className='text-sm text-slate-500'>Need Help?&nbsp;</p>
+            <div className='h-1/6 px-12 py-4 flex justify-between items-baseline'>
+                <div className='flex items-baseline text-xs md:text-sm'>
+                    <p className='text-slate-500'>Need Help?&nbsp;</p>
                     <a href="">Call 99999999</a>
                 </div>
-                <button className='bg-[#122B49] px-5 py-1 text-white rounded-lg' type="submit">Next</button>
+                <button className='bg-[#122B49] px-2 md:px-5 py-1 text-white rounded-lg' type="submit">Next</button>
             </div>
         </form>
     )
