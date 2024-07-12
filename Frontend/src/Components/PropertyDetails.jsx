@@ -19,6 +19,7 @@ export default function PropertyDetails(){
         availability: '',
         description: ''
     });
+    const [errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -28,9 +29,37 @@ export default function PropertyDetails(){
         });
     };
 
+    const validate = () => {
+        let newErrors = {};
+
+        if (!formData.propertyType) newErrors.propertyType = 'Property Type is required';
+        if (!formData.subPropertyType) newErrors.subPropertyType = 'Sub Property Type is required';
+        if (!formData.builtUpArea) newErrors.builtUpArea = 'Built Up Area is required';
+        if (!formData.carpetArea) newErrors.carpetArea = 'Carpet Area is required';
+        if (!formData.propertyOnFloor) newErrors.propertyOnFloor = 'Property on Floor is required';
+        if (!formData.totalFloors) newErrors.totalFloors = 'Total Floors is required';
+        if (!formData.propertyFacing) newErrors.propertyFacing = 'Property Facing is required';
+        if (!formData.propertyAge) newErrors.propertyAge = 'Property Age is required';
+        if (!formData.bhkType) newErrors.bhkType = 'BHK Type is required';
+        if (!formData.bathrooms) newErrors.bathrooms = 'Bathrooms/Toilets is required';
+        if (!formData.balcony) newErrors.balcony = 'Balcony is required';
+        if (!formData.preference) newErrors.preference = 'Tenant Preference is required';
+        if (!formData.availability) newErrors.availability = 'Availability is required';
+        if (!formData.description) newErrors.description = 'Property Description is required';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', formData);
+        const isValid = validate();
+        if (isValid) {
+            console.log('Form data submitted:', formData);
+            // Redirect or move to next step
+        } else {
+            console.log('Form validation failed.');
+        }
     };
 
     return (

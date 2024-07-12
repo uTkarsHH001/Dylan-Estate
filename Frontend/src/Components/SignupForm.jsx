@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export default function SignupForm(){
+export default function SignupForm({onSubmit}){
     const [formData, setFormData] = useState({
         userType: 'owner',
         name: '',
@@ -8,6 +8,8 @@ export default function SignupForm(){
         phone: '',
         email: ''
     });
+    const [errors, setErrors] = useState({});
+
 
     const handleChange = (e) => {
         const { name, value } = e.target;
@@ -17,9 +19,28 @@ export default function SignupForm(){
         });
     };
 
+    const validate = () => {
+        let newErrors = {};
+
+        if (!formData.name) newErrors.name = 'Name is required';
+        if (!formData.phone && !formData.email) {
+            newErrors.phone = 'Either Phone number or Email is required';
+            newErrors.email = 'Either Phone number or Email is required';
+        } else {
+            if (formData.phone && !/^\d{10}$/.test(formData.phone)) {
+                newErrors.phone = 'Phone number must be 10 digits';
+            }
+            if (formData.email && !/\S+@\S+\.\S+/.test(formData.email)) {
+                newErrors.email = 'Valid Email is required';
+            }
+        }
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', formData);
+        if(validate()) onSubmit();
     };
 
     return (
@@ -63,8 +84,9 @@ export default function SignupForm(){
                             name="name"
                             value={formData.name}
                             onChange={handleChange}
-                            className='border w-full my-2 p-2 rounded-lg'
+                            className={`border w-full my-2 p-2 rounded-lg ${errors.name ? `border-red-500` : ``}`}
                         />
+                        {errors.name && <p className="text-red-600 text-sm">{errors.name}</p>}
                     </label>
                 </div>
                 <div className='my-6'>
@@ -91,7 +113,7 @@ export default function SignupForm(){
                                 value={formData.country}
                                 onChange={handleChange}
 
-                                className='my-2 p-2 rounded-lg'
+                                className={`my-2 p-2 rounded-lg`}
                             >
                                 <option value="India">+91</option>
                                 <option value="India">+90</option>
@@ -104,9 +126,10 @@ export default function SignupForm(){
                                 onChange={handleChange}
 
                                 placeholder="000-000-0000"
-                                className='w-full border my-2 p-2 rounded-lg'
+                                className={`w-full border my-2 p-2 rounded-lg ${errors.phone ? `border-red-500` : ``}`}
                             />
                         </div>
+                        {errors.phone && <p className="text-red-600 text-sm">{errors.phone}</p>}
                     </label>
                 </div>
                 <div>
@@ -120,12 +143,13 @@ export default function SignupForm(){
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className='w-full border my-2 p-2 rounded-lg'
+                            className={`w-full border my-2 p-2 rounded-lg ${errors.email ? `border-red-500` : ``}`}
                         />
+                        {errors.email && <p className="text-red-600 text-sm">{errors.email}</p>}
                     </label>
                 </div>
             </div>
-            <div className='h-1/6 px-12 py-4 flex justify-between items-baseline'>
+            <div className='bg-[#FCF8F4] h-1/6 px-12 py-4 flex justify-between items-center'>
                 <div className='flex items-baseline text-xs md:text-sm'>
                     <p className='text-slate-500'>Need Help?&nbsp;</p>
                     <a href="">Call 99999999</a>

@@ -1,12 +1,22 @@
 import { useState } from "react";
 
-export default function OTPForm(){
+export default function OTPForm({handleSignIn}){
 
     const [otp, setOtp] = useState();
+    const [errors, setErrors] = useState({});
+
+    const validate = () => {
+        let newErrors = {};
+        if (!otp || !/^\d{4}$/.test(otp)) {
+            newErrors.otp = 'Valid 4-digit OTP is required';
+        }
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log('Form data submitted:', otp);
+        if(validate()) handleSignIn();
     };
 
     return(
@@ -28,8 +38,9 @@ export default function OTPForm(){
                                 value={otp}
                                 onChange={(e) => setOtp(e.target.value)}
                                 placeholder="0 0 0 0"
-                                className='border w-full my-2 p-2 rounded-lg'
+                                className={`border w-full my-2 p-2 rounded-lg ${errors.otp ? `border-red-500` : ``}`}
                             />
+                            {errors.otp && <p className="text-red-600 text-sm">{errors.otp}</p>}
                         </label>
                         <a className="text-sm float-right" href="#">Resend OTP</a>
                     </div>

@@ -1,7 +1,14 @@
+import { useState } from "react";
 import OTPForm from "./OTPForm";
 import SignupForm from "./SignupForm";
 
-export default function ListYourPropertySignup(){
+export default function ListYourPropertySignup({handleSignIn}){
+
+    const [isSignupSubmitted, setIsSignupSubmitted] = useState(false);
+
+    const handleSignupSubmit = () => {
+        setIsSignupSubmitted(true);
+    };
 
     return(
         <>
@@ -10,7 +17,7 @@ export default function ListYourPropertySignup(){
                     <p className="text-2xl w-full md:w-3/4 ">Sell or Rent your Property For Free</p>
                     <p>Whether you’re ready to sell or looking for answers, we’ll guide you with data and expertise specific to your needs.</p>
                 </div>
-                <div className="w-full h-5/6 flex flex-col md:flex-row justify-around gap-y-4 items-center">
+                <div className="w-full h-3/6 md:h-4/6 flex flex-col md:flex-row justify-around items-center gap-y-6">
                     <div>
                         <p className="text-lg m-4">Upload your property in 4  simple steps</p>
                         <ul>
@@ -21,9 +28,8 @@ export default function ListYourPropertySignup(){
                             <li><img className="w-5 md:w-8 inline" src="/check.png" alt="" />Add your best <b>Properties Shots</b></li>
                         </ul>
                     </div>
-                    <div className="bg-white w-10/12 md:w-5/12 h-3/6  rounded-xl text-black">
-                        {/* <SignupForm /> */}
-                        <OTPForm />
+                    <div className="bg-[white] h-5/6 rounded-xl text-black">
+                    {isSignupSubmitted ? <OTPForm handleSignIn={handleSignIn}/> : <SignupForm onSubmit={handleSignupSubmit} />}
                     </div>
                 </div>
             </div>
