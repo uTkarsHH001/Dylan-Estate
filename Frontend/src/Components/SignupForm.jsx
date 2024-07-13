@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import Input from './Input';
 
 export default function SignupForm({onSubmit}){
     const [formData, setFormData] = useState({
@@ -50,15 +51,16 @@ export default function SignupForm({onSubmit}){
             </div>
             <div className='h-4/6 overflow-scroll overflow-x-hidden px-16'>
                 <div className='my-6'>
-                <label>
+                    <label>
                         I am : <span className='text-red-600'>*</span> <br />
-                        <div className='flex justify-between'>
+                        <div className='w-full p-2 grid grid-cols-2'>
                             <label>
                                 <input
                                     type="radio"
                                     name="userType"
                                     value="owner"
-                                    checked={formData.userType === 'owner'}
+                                    handleChange={handleChange}
+                                    checked={formData["userType"] === "owner"}
                                     onChange={handleChange}
                                 />
                                 &nbsp;&nbsp;Owner
@@ -68,25 +70,28 @@ export default function SignupForm({onSubmit}){
                                     type="radio"
                                     name="userType"
                                     value="builder"
-                                    checked={formData.userType === 'builder'}
+                                    handleChange={handleChange}
+                                    checked={formData["userType"] === "builder"}
                                     onChange={handleChange}
                                 />
                                 &nbsp;&nbsp;Builder
                             </label>
                         </div>
-                </label>
+                    </label>
                 </div>
                 <div className='my-6'>
                     <label>
                         Your Names <span className='text-red-600'>*</span><br />
-                        <input
-                            type="text"
-                            name="name"
-                            value={formData.name}
-                            onChange={handleChange}
-                            className={`border w-full my-2 p-2 rounded-lg ${errors.name ? `border-red-500` : ``}`}
-                        />
-                        {errors.name && <p className="text-red-600 text-sm">{errors.name}</p>}
+                            <Input
+                                type="text"
+                                name="name"
+                                value={formData.name}
+                                handleChange={handleChange}
+                                formData={formData}
+                                label={""}
+                                placeholder={"Enter your Full name"}
+                                errors={errors}
+                            />
                     </label>
                 </div>
                 <div className='my-6'>
@@ -107,7 +112,7 @@ export default function SignupForm({onSubmit}){
                 <div className='my-6'>
                     <label>
                         Phone <span className='text-red-600'>*</span>
-                        <div className='w-full flex'>
+                        <div className='w-full'>
                             <select
                                 name="country"
                                 value={formData.country}
@@ -119,17 +124,16 @@ export default function SignupForm({onSubmit}){
                                 <option value="India">+90</option>
                                 <option value="India">+92</option>
                             </select>
-                            <input
+                            <Input
                                 type="tel"
                                 name="phone"
                                 value={formData.phone}
-                                onChange={handleChange}
-
+                                label={""}
+                                handleChange={handleChange}
                                 placeholder="000-000-0000"
-                                className={`w-full border my-2 p-2 rounded-lg ${errors.phone ? `border-red-500` : ``}`}
+                                errors={errors}
                             />
                         </div>
-                        {errors.phone && <p className="text-red-600 text-sm">{errors.phone}</p>}
                     </label>
                 </div>
                 <div>
@@ -138,14 +142,16 @@ export default function SignupForm({onSubmit}){
                 <div className='my-6'>
                     <label>
                         Email <span className='text-red-600'>*</span>
-                        <input
-                            type="email"
-                            name="email"
-                            value={formData.email}
-                            onChange={handleChange}
-                            className={`w-full border my-2 p-2 rounded-lg ${errors.email ? `border-red-500` : ``}`}
-                        />
-                        {errors.email && <p className="text-red-600 text-sm">{errors.email}</p>}
+                            <Input
+                                type="email"
+                                name="email"
+                                value={formData.email}
+                                handleChange={handleChange}
+                                formData={formData}
+                                label={""}
+                                placeholder="abc@gmail.com"
+                                errors={errors}
+                            />
                     </label>
                 </div>
             </div>

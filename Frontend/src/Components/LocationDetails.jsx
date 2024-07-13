@@ -1,75 +1,97 @@
 import { useState } from "react";
+import Input from "./Input";
 
-export default function LocationDetails(){
+export default function LocationDetails({markComplete, moveTo}){
 
     const [formData, setFormData] = useState({
         buildingName: '',
         locality: '',
         landmark: '',
         city: ''
-    });
+    })
+    const[errors, setErrors] = useState({});
 
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData({
             ...formData,
             [name]: value
-        });
+        })
+        setErrors({
+            ...errors,
+            [name]: ''
+        })
+    }
+
+    const validate = () => {
+        let newErrors = {};
+
+        if (!formData.buildingName) newErrors.buildingName = 'Building Name is required';
+        if (!formData.locality) newErrors.locality = 'Locality name is required';
+        if (!formData.landmark) newErrors.landmark = 'Landmark is required';
+        if (!formData.city) newErrors.city = 'City is required';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const isValid = validate();
+        if (isValid) {
+            markComplete()
+            moveTo()
+        } else {
+            console.log('Form validation failed.')
+        }
+        
     };
 
     return(
         <>
-            <form action="" className="w-full h-full">
+            <form onSubmit={handleSubmit} className="w-full h-full">
                 <div className="h-5/6 overflow-scroll overflow-x-hidden px-5 md:px-16">
                     {/* Building & Locality */}
-                    <div className='my-6 flex flex-wrap'>
-                        <label className='flex-1 px-1 min-w-24'>
-                           Building/Society Name <span className='text-red-600'>*</span><br />
-                            <input
-                                type="text"
-                                name="buildingName"
-                                value={formData.buildingName}
-                                onChange={handleChange}
-                                placeholder="Eg: Sheetal Nagar"
-                                className="border w-full my-2 p-2 rounded-lg"
-                            />
-                        </label>
-                        <label className='flex-1 px-1 min-w-24'>
-                            Locality / Area <span className='text-red-600'>*</span><br />
-                            <input
-                                type="text"
-                                name="locality"
-                                value={formData.locality}
-                                onChange={handleChange}
-                                placeholder='Sq. Ft.'
-                                className='border w-full my-2 p-2 rounded-lg'
-                            />
-                        </label>
+                    <div className='my-6 grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <Input
+                            type="text"
+                            name="buildingName"
+                            value={formData.buildingName}
+                            handleChange={handleChange}
+                            label="Building/Society Name"
+                            placeholder="Eg: Sheetal Nagar"
+                            errors={errors}
+                        />
+                        <Input
+                            type="text"
+                            name="locality"
+                            value={formData.locality}
+                            handleChange={handleChange}
+                            label="Locality / Area"
+                            placeholder="Sq. Ft"
+                            errors={errors}
+                        />
                     </div>
                     {/* Landmark & City */}
-                    <div className='my-6 flex flex-wrap'>
-                        <label className='flex-1 px-1 min-w-24'>
-                            Landmark / Street Name <span className='text-red-600'>*</span><br />
-                            <input
-                                type="text"
-                                name="landmark"
-                                value={formData.landmark}
-                                onChange={handleChange}
-                                placeholder="Prominent Landmark"
-                                className="border w-full my-2 p-2 rounded-lg"
-                            />
-                        </label>
-                        <label className='flex-1 px-1 min-w-24'>
-                            City <span className='text-red-600'>*</span><br />
-                            <input
-                                type="text"
-                                name="city"
-                                value={formData.city}
-                                onChange={handleChange}
-                                placeholder="Mumbai, Maharashtra"
-                                className="border w-full my-2 p-2 rounded-lg"
-                            />
-                        </label>
+                    <div className='my-6 grid grid-cols-1 md:grid-cols-2 gap-4'>
+                        <Input
+                            type="text"
+                            name="landmark"
+                            value={formData.landmark}
+                            handleChange={handleChange}
+                            label="Landmark / Street Name"
+                            placeholder="Prominent Landmark"
+                            errors={errors}
+                        />
+                        <Input
+                            type="text"
+                            name="city"
+                            value={formData.city}
+                            handleChange={handleChange}
+                            label="City"
+                            placeholder="Mumbai, Maharashtra"
+                            errors={errors}
+                        />
                     </div>
                 </div>
                 {/* Submit Button */}

@@ -5,7 +5,7 @@ export default function Navbar(){
 
     return(
         <>
-            <nav className="bg-[#FCF8F4] w-full px-10 py-2 font-bold flex justify-between items-baseline fixed top-0">
+            <nav className="hidden md:block bg-[#FCF8F4] w-full px-10 py-2 font-bold flex justify-between items-baseline fixed top-0">
                 <div className="">
                     <img src="logo.png" alt="" />
                 </div>

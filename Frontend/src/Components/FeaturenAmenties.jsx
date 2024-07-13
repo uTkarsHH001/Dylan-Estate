@@ -9,7 +9,7 @@ import { PiParkFill } from "react-icons/pi";
 import { SiClubhouse, SiHomeassistantcommunitystore, SiIntercom } from "react-icons/si";
 import { FaChildren, FaPersonSwimming } from "react-icons/fa6";
 
-export default function FeaturenAmenties(){
+export default function FeaturenAmenties({markComplete, moveTo}){
 
     const [formData, setFormData] = useState({
         nonVegAllowed: '',
@@ -22,6 +22,7 @@ export default function FeaturenAmenties(){
         safety: [],
         societyAmenities: []
     });
+    const[errors, setErrors] = useState({})
 
     const handleChange = (e) => {
         const { name, value, type, checked } = e.target;
@@ -29,6 +30,10 @@ export default function FeaturenAmenties(){
             ...prevState,
             [name]: type === 'checkbox' ? checked : value
         }));
+        setErrors({
+            ...errors,
+            [name]: ''
+        })
     };
 
     const handleCheckboxChange = (e) => {
@@ -48,20 +53,44 @@ export default function FeaturenAmenties(){
         setFormData(updatedFormData);
       };
       
-      console.log(formData)
+    const validate = () => {
+        let newErrors = {};
+
+        if (!formData.nonVegAllowed) newErrors.nonVegAllowed = 'This field is required';
+        if (!formData.petsAllowed) newErrors.petsAllowed = 'This field is required';
+        if (!formData.electricity) newErrors.electricity = 'This field is required';
+        if (!formData.waterSupply) newErrors.waterSupply = 'This field is required';
+        if (formData.furnishing.length === 0) newErrors.furnishing = 'At least one furnishing option is required';
+        if (formData.safety.length === 0) newErrors.safety = 'At least one safety option is required';
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        const isValid = validate();
+        if (isValid) {
+            markComplete()
+            moveTo()
+        } else {
+            console.log('Form validation failed.');
+        }
+        
+    };
 
     return(
 
         <>
-            <form action="" className="w-full h-full">
+            <form onSubmit={handleSubmit} className="w-full h-full">
                 <div className="w-full h-5/6 overflow-scroll overflow-x-hidden px-5 md:px-16">
                     {/* General Features                    */}
-                    <div className="py-5 flex flex-wrap flex-col gap-y-8">
+                    <div className="py-5 grid gap-5 justify-center md:justify-start">
                         <p className="font-semibold">General Features</p>
                         {/* Non-Veg */}
-                        <div>
-                            <b>Non-Veg</b> <span className='text-red-600'>*</span> <br />
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                        <div className="py-5">
+                            <p className="pb-5"><b>Non-Veg</b> <span className='text-red-600'>*</span></p>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                 <label>
                                     <input
                                         type="radio"
@@ -83,11 +112,12 @@ export default function FeaturenAmenties(){
                                     &nbsp;&nbsp;Not Allowed
                                 </label>
                             </div>
+                            {errors && errors.nonVegAllowed && <p className="text-red-600 text-sm">{errors.nonVegAllowed}</p>}
                         </div>
                         {/* Pets Allowed */}
                         <div>
-                            <b>Pets Allowed</b> <span className='text-red-600'>*</span> <br />
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                            <p className="pb-5"><b>Pets Allowed</b> <span className='text-red-600'>*</span></p>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                 <label>
                                     <input
                                         type="radio"
@@ -109,11 +139,12 @@ export default function FeaturenAmenties(){
                                     &nbsp;&nbsp;No
                                 </label>
                             </div>
+                            {errors && errors.petsAllowed && <p className="text-red-600 text-sm">{errors.petsAllowed}</p>}
                         </div>
                         {/* Electricity */}
                         <div>
-                            <b>Electricity</b> <span className='text-red-600'>*</span> <br />
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                            <p className="pb-5"><b>Electricity</b> <span className='text-red-600'>*</span> <br /></p>
+                            <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
                                 <label>
                                     <input
                                         type="radio"
@@ -135,11 +166,12 @@ export default function FeaturenAmenties(){
                                     &nbsp;&nbsp;Frequent Powercut
                                 </label>
                             </div>
+                            {errors && errors.electricity && <p className="text-red-600 text-sm">{errors.electricity}</p>}
                         </div>
                         {/* Water Supply */}
                         <div>
-                            <b>Water Supply</b> <span className='text-red-600'>*</span> <br />
-                            <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
+                            <p className="pb-5"><b>Water Supply</b> <span className='text-red-600'>*</span></p>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
                                 <label>
                                     <input
                                         type="radio"
@@ -172,55 +204,53 @@ export default function FeaturenAmenties(){
                                     &nbsp;&nbsp;Both
                                 </label>
                             </div>
+                            {errors && errors.waterSupply && <p className="text-red-600 text-sm">{errors.waterSupply}</p>}
                         </div>
                         <hr />
                         {/* Furnishing */}
-                        <div className="py-4 flex flex-col">
-                            <div>
-                                <b>Furnishing</b> <span className='text-red-600'>*</span> <br />
-                                <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
-                                    <label className='flex-1 min-w-24'>
-                                        <input
-                                            type="checkbox"
-                                            name="furnishing"
-                                            value="fullyFurnished"
-                                            checked={formData["furnishing"].includes('fullyFurnished')}
-                                            onChange={handleCheckboxChange}
-                                        />
-                                        &nbsp;&nbsp;Fully Furnished
-                                    </label>
-                                    <label className='flex-1 min-w-24'>
-                                        <input
-                                            type="checkbox"
-                                            name="furnishing"
-                                            value="semiFurnished"
-                                            checked={formData["furnishing"].includes('semiFurnished')}
-                                            onChange={handleCheckboxChange}
-                                        />
-                                        &nbsp;&nbsp;Semi Furnished
-                                    </label>
-                                    <label className='flex-1 min-w-24'>
-                                        <input
-                                            type="checkbox"
-                                            name="furnishing"
-                                            value="unfurnished"
-                                            checked={formData["furnishing"].includes('unfurnished')}
-                                            onChange={handleCheckboxChange}
-                                        />
-                                        &nbsp;&nbsp;Unfurnished
-                                    </label>
-                                </div>
+                        <div>
+                            <p className="pb-5"><b>Furnishing</b><span className='text-red-600'>*</span></p>
+                            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
+                                <label className='flex-1 min-w-24'>
+                                    <input
+                                        type="checkbox"
+                                        name="furnishing"
+                                        value="fullyFurnished"
+                                        checked={formData["furnishing"].includes('fullyFurnished')}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    &nbsp;&nbsp;Fully Furnished
+                                </label>
+                                <label className='flex-1 min-w-24'>
+                                    <input
+                                        type="checkbox"
+                                        name="furnishing"
+                                        value="semiFurnished"
+                                        checked={formData["furnishing"].includes('semiFurnished')}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    &nbsp;&nbsp;Semi Furnished
+                                </label>
+                                <label className='flex-1 min-w-24'>
+                                    <input
+                                        type="checkbox"
+                                        name="furnishing"
+                                        value="unfurnished"
+                                        checked={formData["furnishing"].includes('unfurnished')}
+                                        onChange={handleCheckboxChange}
+                                    />
+                                    &nbsp;&nbsp;Unfurnished
+                                </label>
                             </div>
+                            {errors && errors.furnishing && <p className="text-red-600 text-sm">{errors.furnishing}</p>}
                         </div>
                     </div>
                     
                     <hr />
                     
                     {/* Addtional Features */}
-                    <div className="py-5 flex flex-col gap-y-8">  
-                        <div>
-                            <b>Additional Features</b>
-                        </div>
+                    <div className="py-5">  
+                        <p className="pb-5"><b>Additional Features</b></p>
                         <div className="w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
                             <label>
                                 <input
@@ -295,8 +325,8 @@ export default function FeaturenAmenties(){
                     <hr />
 
                     {/* Tiles */}
-                    <div className="py-5 flex flex-col gap-y-8">
-                        <div><b>Tiles</b></div>
+                    <div className="py-5">
+                        <p className="pb-5"><b>Tiles</b></p>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
                             <label>
                                 <input
@@ -340,8 +370,8 @@ export default function FeaturenAmenties(){
                     <hr />
                     
                     {/* Safety */}
-                    <div className="py-5 flex flex-col gap-y-8">
-                        <div><b>Safety</b><span className='text-red-600'>*</span></div>
+                    <div className="py-5">
+                        <div className="pb-5"><b>Safety</b><span className='text-red-600'>*</span></div>
                         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 p-2'>
                             <label>
                                 <input
@@ -367,15 +397,14 @@ export default function FeaturenAmenties(){
                                 &nbsp;&nbsp;Security Systems- CCTV
                             </label>                           
                         </div>
+                        {errors && errors.safety && <p className="text-red-600 text-sm">{errors.safety}</p>}
                     </div>
 
                     <hr />
 
                     {/* Social Amenities */}
-                    <div className="py-5 flex flex-col gap-y-8">  
-                        <div>
-                            <b>Social Amenities</b>
-                        </div>
+                    <div className="py-5">  
+                        <p className="pb-5"><b>Social Amenities</b></p>
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                             <CheckboxIcon 
                                 value={"24/7Security"} 
