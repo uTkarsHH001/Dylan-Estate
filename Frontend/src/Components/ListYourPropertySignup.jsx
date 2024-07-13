@@ -12,7 +12,7 @@ export default function ListYourPropertySignup({handleSignIn}){
 
     return(
         <>
-            <div className="w-screen h-screen overflow-hidden bg-[#122B49] pt-10 md:pt-28 px-8 md:px-16 text-white flex flex-col">
+            <div className="w-screen h-screen overflow-hidden bg-[#122B49] pt-16 md:pt-28 px-8 md:px-16 text-white flex flex-col">
                 <div className="w-full h-1/6 text-center md:w-3/5 md:text-left py-6 overflow-scroll">
                     <p className="text-lg md:text-2xl w-full md:w-3/4 ">Sell or Rent your Property For Free</p>
                     <p>Whether you’re ready to sell or looking for answers, we’ll guide you with data and expertise specific to your needs.</p>
