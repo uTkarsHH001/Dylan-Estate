@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import Input from './Input';
+import DummyDataButton from './DummyDataButton';
 
 export default function SignupForm({onSubmit}){
     const [formData, setFormData] = useState({
@@ -44,8 +45,18 @@ export default function SignupForm({onSubmit}){
         if(validate()) onSubmit();
     };
 
+    const fillData = () => {
+        setFormData({
+            userType: 'owner',
+            name: 'John',
+            country: 'India',
+            phone: '1234567890',
+            email: 'John@gmail.com'
+        })
+    }
     return (
         <form className='w-full h-full' onSubmit={handleSubmit}>
+            <DummyDataButton fillData={fillData}/>
             <div className='h-1/6 bg-[#FCF8F4] p-4 font-semibold'>
                 <p className='pl-8'>LETS GET YOU STARTED !</p>
             </div>

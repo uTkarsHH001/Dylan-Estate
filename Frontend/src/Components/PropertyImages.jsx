@@ -1,6 +1,9 @@
 // import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function PropertyImages(){
+
+    const navigate = useNavigate();
 
     // const [selectedFiles, setSelectedFiles] = useState([]);
 
@@ -39,7 +42,7 @@ export default function PropertyImages(){
                         <p className='text-sm'>Need Help?&nbsp;</p>
                         <a href="">Call 99999999</a>
                     </div>
-                    <button className='bg-[#1E324A] px-12 py-1 cursor-pointer text-white rounded-lg font-bold' type="submit">Save & Post</button>
+                    <button onClick={() => navigate('/thankyou')} className='bg-[#1E324A] px-12 py-1 cursor-pointer text-white rounded-lg font-bold' type="submit">Save & Post</button>
                 </div>
             </form>
         </>

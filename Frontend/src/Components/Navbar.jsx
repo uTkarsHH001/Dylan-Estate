@@ -10,6 +10,14 @@ export default function Navbar() {
         setIsMenuOpen(!isMenuOpen);
     };
 
+    const [isActive, setIsActive] = useState({
+        properties: false,
+        dashboard: false,
+        list: true,
+        contact: false,
+        more: false
+    })
+
     return (
         <>
             <div className="h-full w-full overflow-x-hidden relative">
@@ -20,11 +28,11 @@ export default function Navbar() {
                             <GiHamburgerMenu />
                         </div>
                         <ul className="hidden lg:flex lg:justify-end lg:gap-6 xl:gap-8">
-                            <li><a className="hover:underline active:underline" href="#">PROPERTIES</a></li>
-                            <li><a className="hover:underline active:underline" href="#">MY DASHBOARD/ACTIVITY</a></li>
-                            <li><a className="hover:underline active:underline" href="#">LIST YOUR PROPERTY</a></li>
-                            <li><a className="hover:underline active:underline" href="#">CONTACT US</a></li>
-                            <li><a className="hover:underline active:underline" href="#">MORE</a></li>
+                            <li><a className={`hover:underline ${isActive.properties ? `underline` : ``}`} href="#">PROPERTIES</a></li>
+                            <li><a className={`hover:underline ${isActive.dashboard ? `underline` : ``}`} href="#">MY DASHBOARD/ACTIVITY</a></li>
+                            <li><a className={`hover:underline ${isActive.list ? `underline` : ``}`} href="#">LIST YOUR PROPERTY</a></li>
+                            <li><a className={`hover:underline ${isActive.contact ? `underline` : ``}`} href="#">CONTACT US</a></li>
+                            <li><a className={`hover:underline ${isActive.more ? `underline` : ``}`} href="#">MORE</a></li>
                             <span>|</span>
                             <li className="text-2xl"><a href="#"><IoLanguage /></a></li>
                             <li className="text-2xl"><a href="#"><CgProfile /></a></li>

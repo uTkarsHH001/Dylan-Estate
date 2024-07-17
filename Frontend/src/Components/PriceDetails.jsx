@@ -1,5 +1,6 @@
 import { useState } from "react"
 import Input from "./Input";
+import DummyDataButton from "./DummyDataButton";
 
 export default function PriceDetails({markComplete, moveTo}){
 
@@ -32,7 +33,7 @@ export default function PriceDetails({markComplete, moveTo}){
         if (!formData.security) newErrors.security = 'This field is required';
         if (!formData.maintenance) newErrors.maintenance = 'This field is required';
         if (!formData.cost) newErrors.cost = 'This field is required';
-        if (formData.interval) newErrors.interval = 'This field is required';
+        if (!formData.interval) newErrors.interval = 'This field is required';
 
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
@@ -49,6 +50,15 @@ export default function PriceDetails({markComplete, moveTo}){
         }
         
     };
+
+    const fillData = () => setFormData({
+        rent: '15000',
+        security: '30000',
+        maintenance: 'IncludedInRent',
+        cost: '2000',
+        interval: 'monthly',
+        additionalDetail: 'No additional concerns.'
+    })
 
     return(
         <>
@@ -136,6 +146,7 @@ export default function PriceDetails({markComplete, moveTo}){
                     <button className='bg-[#1E324A] px-12 py-1 cursor-pointer text-white rounded-lg font-bold' type="submit">Next</button>
                 </div>
             </form>
+            <DummyDataButton fillData={fillData}/>
         </>
     )
 }

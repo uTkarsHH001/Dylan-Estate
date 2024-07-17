@@ -8,6 +8,7 @@ import { FaHandHoldingWater, FaFireExtinguisher } from "react-icons/fa";
 import { PiParkFill } from "react-icons/pi";
 import { SiClubhouse, SiHomeassistantcommunitystore, SiIntercom } from "react-icons/si";
 import { FaChildren, FaPersonSwimming } from "react-icons/fa6";
+import DummyDataButton from "./DummyDataButton";
 
 export default function FeaturenAmenties({markComplete, moveTo}){
 
@@ -78,6 +79,18 @@ export default function FeaturenAmenties({markComplete, moveTo}){
         }
         
     };
+
+    const fillData = () => setFormData({
+        nonVegAllowed: 'allowed',
+        petsAllowed: 'yes',
+        electricity: 'powercut',
+        waterSupply: 'BMC',
+        furnishing: ['fullyFurnished'],
+        additionalFeatures: ['airConditioning', 'ceilingFans'],
+        tiles: ['normalWhiteTiles'],
+        safety: ['gatedSecurity'],
+        societyAmenities: ['24/7Security', 'CCTV', 'Lift', 'ReservedParking', 'RegularWaterSupply']
+    })
 
     return(
 
@@ -544,6 +557,8 @@ export default function FeaturenAmenties({markComplete, moveTo}){
                     <button className='bg-[#1E324A] px-12 py-1 cursor-pointer text-white rounded-lg' type="submit">Next</button>
                 </div>
             </form>
+            <DummyDataButton fillData={fillData}/>
         </>
+
     )
 }

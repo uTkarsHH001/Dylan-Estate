@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "./Input";
+import DummyDataButton from "./DummyDataButton";
 
 export default function OTPForm({handleSignIn, formData}){
 
@@ -21,6 +22,8 @@ export default function OTPForm({handleSignIn, formData}){
         e.preventDefault();
         if(validate()) handleSignIn();
     };
+
+    const fillData = () => setOtp(1234);
 
     return(
         <>
@@ -55,6 +58,7 @@ export default function OTPForm({handleSignIn, formData}){
                     <button className='bg-[#122B49] px-12 py-1 text-white rounded-lg' type="submit">Next</button>
                 </div>
             </form> 
+            <DummyDataButton fillData={fillData}/>
         </>
     )
 }

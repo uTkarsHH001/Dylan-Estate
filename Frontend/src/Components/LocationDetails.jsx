@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Input from "./Input";
+import DummyDataButton from "./DummyDataButton";
 
 export default function LocationDetails({markComplete, moveTo}){
 
@@ -46,6 +47,15 @@ export default function LocationDetails({markComplete, moveTo}){
         }
         
     };
+
+    const fillData = () => {
+        setFormData({
+            buildingName: 'Sunshine Apartments',
+            locality: 'Greenwood',
+            landmark: 'Near City Park',
+            city: 'Metropolis'
+        })
+    }
 
     return(
         <>
@@ -103,6 +113,7 @@ export default function LocationDetails({markComplete, moveTo}){
                 <button className='bg-[#1E324A] px-12 py-1 cursor-pointer text-white rounded-lg' type="submit">Next</button>
             </div>
             </form>
+            <DummyDataButton fillData={fillData}/>
         </>
     )
 }

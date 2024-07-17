@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import RadioBadge from './RadioBadge';
 import Input from './Input';
+import DummyDataButton from './DummyDataButton';
 
 export default function PropertyDetails({markComplete, moveTo}){
     const [formData, setFormData] = useState({
@@ -68,8 +69,29 @@ export default function PropertyDetails({markComplete, moveTo}){
         
     };
 
+    const fillData = () => {
+        setFormData({
+            propertyFor: 'rent',
+            propertyType: 'residential',
+            subPropertyType: 'houseVilla',
+            builtUpArea: '450',
+            carpetArea: '400',
+            propertyOnFloor: '2',
+            totalFloors: '5',
+            propertyFacing: 'northEast',
+            propertyAge: '3To5Years',
+            bhkType: '1BHK',
+            bathrooms: '1',
+            balcony: '3',
+            preference: 'family',
+            availability: 'immediate',
+            description: 'A cozy studio apartment located in a peaceful neighborhood, perfect for small families or working professionals. Close to public transport and amenities.'
+        })
+    }
+
     return (
-        <form className='w-full h-full' onSubmit={handleSubmit}>
+        <>
+            <form className='w-full h-full' onSubmit={handleSubmit}>
             <div className='h-5/6 overflow-scroll overflow-x-hidden px-5 md:px-16'>
                 {/* Property For */}
                 <div className='my-6'>
@@ -570,6 +592,8 @@ export default function PropertyDetails({markComplete, moveTo}){
                 </div>
                 <button className='bg-[#1E324A] px-12 py-1 cursor-pointer text-white rounded-lg' type="submit">Next</button>
             </div>
-        </form>
+            </form>
+            <DummyDataButton fillData={fillData}/>
+        </>
     )
 }
